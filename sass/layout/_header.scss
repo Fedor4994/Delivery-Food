@@ -5,22 +5,16 @@
 }
 
 .header__adress_input {
-  color: #bfbfbf;
-  font-size: 16px;
-  line-height: 24px;
-  border: 1px solid #d9d9d9;
-  border-radius: 2px;
   width: 690px;
   height: 40px;
-  padding-left: 35px;
-  padding-right: 12px;
   margin-right: 87px;
   background-image: url(/images/icon/home.svg);
   background-repeat: no-repeat;
-  background-position: 11px 11px;
+  background-position: 11px 10px;
 }
 
 .header__login_bnt {
+  cursor: pointer;
   height: 40px;
   display: flex;
   align-items: center;
@@ -40,6 +34,7 @@
 }
 
 .header__trash_bnt {
+  cursor: pointer;
   height: 40px;
   display: flex;
   align-items: center;

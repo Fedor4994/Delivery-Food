@@ -1,0 +1,35 @@
+.promo {
+  display: flex;
+  align-items: center;
+  height: 300px;
+  background-color: #fff1b8;
+  background-image: url(/images/promo/vegetables.png);
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: contain;
+}
+
+.promo__offer {
+  padding-left: 70px;
+  padding-top: 68px;
+  padding-bottom: 68px;
+}
+
+.promo__title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 39px;
+  line-height: 46px;
+
+  color: #302c34;
+  padding-bottom: 15px;
+}
+
+.promo__text {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+
+  color: #302c34;
+}
