@@ -11,15 +11,21 @@
 }
 
 .restaurants__input {
-  width: 306px;
+  width: 276px;
   height: 34px;
   background-image: url(/images/icon/search.svg);
   background-repeat: no-repeat;
   background-position: 11px 7px;
 }
 
+.cards {
+  display: flex;
+  align-items: center;
+}
+
 .cards__list {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   gap: 24px;
 }
@@ -32,13 +38,14 @@
 }
 
 .cards__image {
-  width: 384px;
+  width: 374px;
   height: 250px;
   object-fit: cover;
 }
 
 .cards__text {
   padding: 34px 24px;
+  padding-bottom: 10px;
 }
 
 .cards__heading {
@@ -70,6 +77,9 @@
 .cards__info {
   display: flex;
   align-items: center;
+  padding-left: 24px;
+  padding-right: 23px;
+  padding-bottom: 34px;
 }
 
 .cards__rating {
@@ -105,4 +115,16 @@
   border-radius: 50%;
   margin-left: 10px;
   margin-right: 10px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .cards__image {
+    width: 342px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .cards__image {
+    width: 450px;
+  }
 }

@@ -31,3 +31,29 @@
 .social-links__item:not(:last-child) {
   margin-right: 21px;
 }
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .footer__block {
+    padding-bottom: 30px;
+    padding-top: 30px;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .footer__link:not(:last-child) {
+    margin-right: 0;
+  }
+
+  .footer__navigation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-bottom: 15px;
+  }
+
+  .footer__logo {
+    margin-bottom: 15px;
+  }
+}
