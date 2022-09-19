@@ -1,0 +1,33 @@
+.footer__block {
+  padding-bottom: 60px;
+  padding-top: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer__navigation {
+  margin-right: auto;
+  margin-left: 35px;
+}
+
+.footer__link {
+  display: inline-block;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: #595959;
+}
+
+.footer__link:not(:last-child) {
+  margin-right: 15px;
+}
+
+.social {
+  display: flex;
+  align-items: center;
+}
+
+.social-links__item:not(:last-child) {
+  margin-right: 21px;
+}
