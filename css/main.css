@@ -309,8 +309,14 @@ body {
 .restaurants__heading {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding-top: 56px;
+  padding-bottom: 44px;
+}
+
+.restaurant__heading {
+  display: flex;
+  align-items: center;
+  padding-top: 6px;
   padding-bottom: 44px;
 }
 
@@ -320,6 +326,7 @@ body {
   background-image: url(/images/icon/search.svg);
   background-repeat: no-repeat;
   background-position: 11px 7px;
+  margin-left: auto;
 }
 
 .cards {
@@ -348,8 +355,8 @@ body {
 }
 
 .cards__text {
-  padding: 34px 24px;
-  padding-bottom: 10px;
+  padding-left: 24px;
+  padding-top: 24px;
 }
 
 .cards__heading {
@@ -359,11 +366,23 @@ body {
   margin-bottom: 10px;
 }
 
+.cards__heading_rest {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+
 .cards__title {
   font-weight: 700;
   font-size: 24px;
   line-height: 32px;
   color: #000000;
+}
+
+.cards__title_reg {
+  font-weight: 400;
+  margin-bottom: 10px;
 }
 
 .cards__time {
@@ -383,6 +402,12 @@ body {
   padding-left: 24px;
   padding-right: 23px;
   padding-bottom: 34px;
+}
+
+.restourant_cards__info {
+  display: flex;
+  align-items: center;
+  margin-left: 30px;
 }
 
 .cards__rating {
@@ -418,6 +443,34 @@ body {
   border-radius: 50%;
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.cards__btn {
+  cursor: pointer;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  margin-right: 32px;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  background-color: #1890ff;
+  color: #fff;
+}
+
+.cards__descr {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: #8c8c8c;
+}
+
+.cards__price_rest {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+  color: #000000;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1199px) {

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Тануки</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css"
+      integrity="sha512-wpPYUAdjBVSE4KJnH1VR1HeZfpl1ub8YT/NKx4PuQ5NmX2tKuGu6U/JRp5y+Y8XG2tV+wKQpNHVUX03MfMFn9Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/main.min.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <a href="./index.html">
+          <img class="logo header__logo link" src="./images/icon/logo.svg" alt="logo"
+        /></a>
+        <input
+          type="text"
+          class="header__adress_input input"
+          name="user-adress"
+          placeholder="Адресс доставки"
+        />
+        <div class="header__buttons">
+          <button type="button" class="header__login_bnt">
+            <img src="./images/icon/user.svg" alt="home" class="header__login_icon" />Войти
+          </button>
+          <button type="button" class="header__trash_bnt">
+            <img
+              src="./images/icon/shopping-cart.svg"
+              alt="home"
+              class="header__trash_icon"
+            />Корзина
+          </button>
+        </div>
+      </header>
+    </div>
+    <main class="main">
+      <section class="restaurants container">
+        <div class="restaurant__heading">
+          <h2>Тануки</h2>
+          <div class="restourant_cards__info">
+            <p class="cards__rating">
+              <img class="cards__rating_star" src="./images/icon/rating.svg" alt="star" /> 4.5
+            </p>
+            <p class="cards__price">От 900 ₽</p>
+            <p class="cards__product">Пицца и суши</p>
+          </div>
+        </div>
+
+        <div class="cards">
+          <ul class="cards__list list">
+            <li class="cards__item">
+              <img src="./images/tanuki/azhi.jpg" alt="Пиццерия" class="cards__image" />
+              <div class="cards__text">
+                <div class="cards__heading_rest">
+                  <h3 class="cards__title cards__title_reg">Ролл угорь стандарт</h3>
+                  <p class="cards__descr">
+                    Рис, угорь, соус унаги, <br />
+                    кунжут, водоросли нори.
+                  </p>
+                </div>
+              </div>
+              <div class="cards__info">
+                <button type="button" class="cards__btn">
+                  В корзину &nbsp<img src="./images/icon/shopping-cart-white.svg" alt="cart" />
+                </button>
+                <p class="cards__price_rest">250 ₽</p>
+              </div>
+            </li>
+
+            <li class="cards__item">
+              <img src="./images/tanuki/black.jpg" alt="Пиццерия" class="cards__image" />
+              <div class="cards__text">
+                <div class="cards__heading_rest">
+                  <h3 class="cards__title cards__title_reg">Калифорния лосось стандарт</h3>
+                  <p class="cards__descr">
+                    Рис, лосось, авокадо, огурец, майонез, <br />
+                    икра масаго, водоросли нори.
+                  </p>
+                </div>
+              </div>
+              <div class="cards__info">
+                <button type="button" class="cards__btn">
+                  В корзину &nbsp<img src="./images/icon/shopping-cart-white.svg" alt="cart" />
+                </button>
+                <p class="cards__price_rest">395 ₽</p>
+              </div>
+            </li>
+
+            <li class="cards__item">
+              <img src="./images/tanuki/fresh.jpg" alt="Пиццерия" class="cards__image" />
+              <div class="cards__text">
+                <div class="cards__heading_rest">
+                  <h3 class="cards__title cards__title_reg">Окинава стандарт</h3>
+                  <p class="cards__descr">
+                    Рис, креветка отварная, сыр <br />
+                    сливочный, лосось, огурец свежий
+                  </p>
+                </div>
+              </div>
+              <div class="cards__info">
+                <button type="button" class="cards__btn">
+                  В корзину &nbsp<img src="./images/icon/shopping-cart-white.svg" alt="cart" />
+                </button>
+                <p class="cards__price_rest">250 ₽</p>
+              </div>
+            </li>
+
+            <li class="cards__item">
+              <img src="./images/tanuki/nisuaz.jpg" alt="Пиццерия" class="cards__image" />
+              <div class="cards__text">
+                <div class="cards__heading_rest">
+                  <h3 class="cards__title cards__title_reg">Цезарь маки хl</h3>
+                  <p class="cards__descr">
+                    Рис, куриная грудка копченая, икра <br />
+                    масаго, томат, айсберг, соус цезарь.
+                  </p>
+                </div>
+              </div>
+              <div class="cards__info">
+                <button type="button" class="cards__btn">
+                  В корзину &nbsp<img src="./images/icon/shopping-cart-white.svg" alt="cart" />
+                </button>
+                <p class="cards__price_rest">250 ₽</p>
+              </div>
+            </li>
+
+            <li class="cards__item">
+              <img src="./images/tanuki/smoke.jpg" alt="Пиццерия" class="cards__image" />
+              <div class="cards__text">
+                <div class="cards__heading_rest">
+                  <h3 class="cards__title cards__title_reg">Ясай маки стандарт 185 г</h3>
+                  <p class="cards__descr">
+                    Рис, помидор свежий, перец <br />
+                    болгарский, авокадо, огурец, айсберг
+                  </p>
+                </div>
+              </div>
+              <div class="cards__info">
+                <button type="button" class="cards__btn">
+                  В корзину &nbsp<img src="./images/icon/shopping-cart-white.svg" alt="cart" />
+                </button>
+                <p class="cards__price_rest">250 ₽</p>
+              </div>
+            </li>
+
+            <li class="cards__item">
+              <img src="./images/tanuki/tanuki.jpg" alt="Пиццерия" class="cards__image" />
+              <div class="cards__text">
+                <div class="cards__heading_rest">
+                  <h3 class="cards__title cards__title_reg">Ролл с креветкой стандарт</h3>
+                  <p class="cards__descr">
+                    Рис, водоросли нори, креветки <br />
+                    отварные, сыр сливочный, огурцы
+                  </p>
+                </div>
+              </div>
+              <div class="cards__info">
+                <button type="button" class="cards__btn">
+                  В корзину &nbsp<img src="./images/icon/shopping-cart-white.svg" alt="cart" />
+                </button>
+                <p class="cards__price_rest">250 ₽</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__block">
+          <a href="#">
+            <img class="logo footer__logo link" src="./images/icon/logo.svg" alt="logo"
+          /></a>
+          <nav class="footer__navigation">
+            <a href="#" class="footer__link link">Ресторанам </a>
+            <a href="#" class="footer__link link">Курьерам</a>
+            <a href="#" class="footer__link link">Пресс-центр</a>
+            <a href="#" class="footer__link link">Контакты</a>
+          </nav>
+
+          <div class="social-links">
+            <ul class="social list">
+              <li class="social-links__item">
+                <img
+                  class="social-links__icon"
+                  src="./images/social/insta.svg"
+                  alt="instagram icon"
+                />
+              </li>
+              <li class="social-links__item">
+                <img
+                  class="social-links__icon"
+                  src="./images/social/face.svg"
+                  alt="facebook icon"
+                  width="25px"
+                  height="25px"
+                />
+              </li>
+              <li class="social-links__item">
+                <img class="social-links__icon" src="./images/social/vk.svg" alt="vk icon" />
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- <ul class="menu list">
+            <li class="menu__item">
+              <a class="menu__link menu__link_current link" href="№">Студия</a>
+            </li>
+            <li class="menu__item">
+              <a class="menu__link link" href="./portfolio.html">Портфолио</a>
+            </li>
+            <li class="menu__item">
+              <a class="menu__link link" href="#">Контакты</a>
+            </li>
+          </ul>
+        <button class="mobile-menu-open-button" type="button" data-menu-open>
+          <svg class="mobile-menu-open-button__icon" width="40" height="40">
+            <use href="./images/sprite.svg#icon-menu"></use>
+          </svg>
+        </button>
+        <ul class="contact page-header__contact list">
+          <li>
+            <a class="contact__email link" href="mailto:info@devstudio.com">
+              <svg width="16" height="12" class="contact__icon">
+                <use href="./images/sprite.svg#icon-envelope"></use>
+              </svg>
+              info@devstudio.com</a
+            >
+          </li>
+          <li>
+            <a class="contact__phone-number link" href="tel:+380961111111">
+              <svg width="10" height="16" class="contact__icon">
+                <use href="./images/sprite.svg#icon-smartphone"></use></svg
+              >+38 096 111 11 11</a
+            >
+          </li>
+        </ul> -->
+
+    <script src="./js/modal.js" type="module"></script>
+  </body>
+</html>
