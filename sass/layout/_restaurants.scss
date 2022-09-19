@@ -69,6 +69,10 @@
   margin-bottom: 24px;
 }
 
+.cards__time {
+  margin-right: 10px;
+}
+
 .cards__title {
   font-weight: 700;
   font-size: 24px;
@@ -178,5 +182,9 @@
 @media screen and (min-width: 320px) and (max-width: 768px) {
   .cards__image {
     width: 450px;
+  }
+
+  .restaurants__heading {
+    padding-top: 30px;
   }
 }

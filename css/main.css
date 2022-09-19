@@ -284,7 +284,7 @@ body {
 }
 @media screen and (min-width: 320px) and (max-width: 768px) {
   .promo {
-    background-size: 600px;
+    background-size: 630px;
     background-position: top right -200px;
   }
   .promo__title {
@@ -371,6 +371,10 @@ body {
   justify-content: center;
   flex-direction: column;
   margin-bottom: 24px;
+}
+
+.cards__time {
+  margin-right: 10px;
 }
 
 .cards__title {
@@ -481,6 +485,9 @@ body {
 @media screen and (min-width: 320px) and (max-width: 768px) {
   .cards__image {
     width: 450px;
+  }
+  .restaurants__heading {
+    padding-top: 30px;
   }
 }
 .footer__block {
