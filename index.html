@@ -31,13 +31,17 @@
         /></a>
         <input
           type="text"
-          class="header__adress_input input animate__animated animate__bounce"
+          class="header__adress_input input"
           name="user-adress"
           placeholder="Адресс доставки"
         />
         <div class="header__buttons">
+          <span class="user-name"></span>
           <button type="button" class="header__login_bnt">
             <img src="./images/icon/user.svg" alt="home" class="header__login_icon" />Войти
+          </button>
+          <button type="button" class="header__out_bnt">
+            <img src="./images/icon/user.svg" alt="home" class="header__login_icon" />Выйти
           </button>
           <button data-modal-open type="button" class="header__trash_bnt">
             <img
@@ -298,24 +302,24 @@
       <div class="modal login-modal">
         <fieldset>
           <legend class="modal__title">Авторизация</legend>
-          <form>
+          <form class="login-form">
             <div class="login-input-wrapper">
               <label class="login-lable">
-                Email:
+                Login:
                 <input
-                  type="email"
+                  type="text"
                   class="login-input"
-                  name="login"
+                  name="email"
                   placeholder="example@gmail.com"
                 />
               </label>
               <label class="login-lable">
                 Password:
-                <input type="text" class="login-input" name="login" placeholder="12345" />
+                <input type="password" class="login-input" name="password" placeholder="12345" />
               </label>
             </div>
             <div class="modal-footer__buttons">
-              <button type="button" class="modal-footer__button-blue modal-footer__button">
+              <button type="submit" class="modal-footer__button-blue modal-footer__button">
                 Войти
               </button>
               <button type="button" class="modal-footer__button" login-modal-close>Отмена</button>
