@@ -296,6 +296,19 @@ body {
   margin-bottom: 20px;
 }
 
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .login-input {
+    width: 326;
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .login-modal {
+    max-width: 380px;
+  }
+  .login-input {
+    width: 226px;
+  }
+}
 .input {
   padding-left: 35px;
   padding-right: 12px;
@@ -392,6 +405,16 @@ body {
     margin-right: 0;
     height: 30px;
     width: 100%;
+  }
+  .header__out_bnt {
+    padding: 4px 8px;
+    margin-bottom: 5px;
+    margin-right: 0;
+    height: 30px;
+    width: 100%;
+  }
+  .user-name {
+    font-style: 14px;
   }
   .header__trash_bnt {
     padding: 2px 5px;

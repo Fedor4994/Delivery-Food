@@ -9,6 +9,7 @@ loginButton.addEventListener('click', toggleModal);
 closeModalBtn.addEventListener('click', toggleModal);
 window.addEventListener('keydown', closeModalByEsc);
 loginForm.addEventListener('submit', onFormSubmit);
+modal.addEventListener('click', onModalClick);
 logoutButton.addEventListener('click', onLogoutButtonClick);
 
 let login = localStorage.getItem('login');
@@ -39,17 +40,26 @@ function notAutorized() {
 function onFormSubmit(event) {
   event.preventDefault();
 
-  login = event.target.elements.email.value;
-  password = event.target.elements.password.value;
-  localStorage.setItem('login', login);
+  login = event.target.elements.email.value.trim();
+  password = event.target.elements.password.value.trim();
 
-  if (login && password) {
-    event.target.reset();
-    toggleModal();
-    checkAuth();
-  } else {
-    alert('Заполни все поля!');
+  event.target.elements.email.style.borderColor = '';
+  event.target.elements.password.style.borderColor = '';
+  if (login === '') {
+    event.target.elements.email.value = '';
+    event.target.elements.email.style.borderColor = 'red';
+    return;
   }
+  if (password === '') {
+    event.target.elements.password.value = '';
+    event.target.elements.password.style.borderColor = 'red';
+    return;
+  }
+
+  localStorage.setItem('login', login);
+  event.target.reset();
+  toggleModal();
+  checkAuth();
 }
 
 function onLogoutButtonClick() {
@@ -62,12 +72,28 @@ function onLogoutButtonClick() {
   userName.textContent = '';
 }
 
+function onModalClick(event) {
+  if (event.target.classList.contains('backdrop')) {
+    event.target.classList.add('is-hidden');
+    enableScroll();
+  }
+}
+
 function closeModalByEsc(event) {
   if (event.code === 'Escape') {
     modal.classList.add('is-hidden');
   }
+  enableScroll();
 }
 
 function toggleModal() {
+  loginForm.elements.email.style.borderColor = '';
+  loginForm.elements.password.style.borderColor = '';
+
   modal.classList.toggle('is-hidden');
+  if (modal.classList.contains('is-hidden')) {
+    enableScroll();
+  } else {
+    disableScroll();
+  }
 }
