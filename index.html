@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Delivery Food</title>
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
@@ -287,11 +288,44 @@
             <button type="button" class="modal-footer__button-blue modal-footer__button">
               Оформить заказ
             </button>
-            <button type="button" class="modal-footer__button">Отмена</button>
+            <button type="button" class="modal-footer__button" cancle-btn>Отмена</button>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="backdrop is-hidden" login-data-modal>
+      <div class="modal login-modal">
+        <fieldset>
+          <legend class="modal__title">Авторизация</legend>
+          <form>
+            <div class="login-input-wrapper">
+              <label class="login-lable">
+                Email:
+                <input
+                  type="email"
+                  class="login-input"
+                  name="login"
+                  placeholder="example@gmail.com"
+                />
+              </label>
+              <label class="login-lable">
+                Password:
+                <input type="text" class="login-input" name="login" placeholder="12345" />
+              </label>
+            </div>
+            <div class="modal-footer__buttons">
+              <button type="button" class="modal-footer__button-blue modal-footer__button">
+                Войти
+              </button>
+              <button type="button" class="modal-footer__button" login-modal-close>Отмена</button>
+            </div>
+          </form>
+        </fieldset>
+      </div>
+    </div>
+
+    <script src="./js/login-modal.js" type="module"></script>
     <script src="./js/modal.js" type="module"></script>
   </body>
 </html>

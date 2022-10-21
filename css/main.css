@@ -203,6 +203,7 @@ body {
 .modal-footer__buttons {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .pricetag {
@@ -269,6 +270,32 @@ body {
     padding: 10px 15px;
   }
 }
+.login-modal {
+  max-width: 580px;
+}
+
+.login-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-lable {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  gap: 7px;
+}
+
+.login-input {
+  width: 376px;
+  height: 34px;
+  margin-bottom: 20px;
+}
+
 .input {
   padding-left: 35px;
   padding-right: 12px;
@@ -441,6 +468,7 @@ body {
 }
 
 .restaurants__input {
+  text-align: center;
   width: 276px;
   height: 34px;
   background-image: url(../images/icon/search.svg);

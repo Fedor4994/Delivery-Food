@@ -1,0 +1,24 @@
+.login-modal {
+  max-width: 580px;
+}
+.login-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-lable {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  gap: 7px;
+}
+
+.login-input {
+  width: 376px;
+  height: 34px;
+  margin-bottom: 20px;
+}
