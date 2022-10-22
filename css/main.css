@@ -332,7 +332,7 @@ body {
 .header__adress_input {
   flex: 0.8;
   height: 40px;
-  background-image: url(../images/icon/home.svg);
+  background-image: url(../img/icon/home.svg);
   background-repeat: no-repeat;
   background-position: 11px 10px;
 }
@@ -432,7 +432,7 @@ body {
   background-clip: content-box;
   height: 270px;
   background-color: #fff45c;
-  background-image: url(../images/promo/vegetables.png);
+  background-image: url(../img/promo/vegetables.png);
   background-repeat: no-repeat;
   background-position: right center;
   background-size: contain;
@@ -441,21 +441,21 @@ body {
 
 .pizza {
   background-color: #fff1b8;
-  background-image: url(../images/promo/pizza.png);
+  background-image: url(../img/promo/pizza.png);
   background-size: 600px;
   background-position: top right -100px;
 }
 
 .kebab {
   background-color: #cbecec;
-  background-image: url(../images/promo/kebab.png);
+  background-image: url(../img/promo/kebab.png);
   background-size: 600px;
   background-position: top right -100px;
 }
 
 .sushi {
   background-color: #ecebd9;
-  background-image: url(../images/promo/sushi.png);
+  background-image: url(../img/promo/sushi.png);
   background-size: 600px;
   background-position: top right -100px;
 }
@@ -560,7 +560,7 @@ body {
   text-align: center;
   width: 276px;
   height: 34px;
-  background-image: url(../images/icon/search.svg);
+  background-image: url(../img/icon/search.svg);
   background-repeat: no-repeat;
   background-position: 11px 7px;
   margin-left: auto;
@@ -579,6 +579,7 @@ body {
 }
 
 .cards__item {
+  max-width: 374px;
   overflow: hidden;
   background: #ffffff;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
@@ -718,10 +719,16 @@ body {
   .cards__image {
     width: 342px;
   }
+  .cards__item {
+    max-width: 342px;
+  }
 }
 @media screen and (min-width: 320px) and (max-width: 768px) {
   .cards__image {
     width: 450px;
+  }
+  .cards__item {
+    max-width: 450px;
   }
   .restaurants__heading {
     padding-top: 30px;

@@ -7,7 +7,7 @@ const closeModalBtn = document.querySelector('[login-modal-close]');
 const modal = document.querySelector('[login-data-modal]');
 const loginForm = document.querySelector('.login-form');
 
-const promoContainer = document.querySelector('.promo');
+const promoContainer = document.querySelector('.swiper-container');
 const restaurants = document.querySelector('.restaurants');
 const cardsRestaurants = document.querySelector('.cards__list');
 const menu = document.querySelector('.menu');
@@ -153,7 +153,7 @@ function creatRestaurantCard(restaurant) {
                 </div>
                 <div class="cards__info">
                   <p class="cards__rating">
-                    <img class="cards__rating_star" src="./images/icon/rating.svg" alt="star" /> ${stars}
+                    <img class="cards__rating_star" src="./img/icon/rating.svg" alt="star" /> ${stars}
                   </p>
                   <p class="cards__price">От ${price} ₽</p>
                   <p class="cards__product">${kitchen}</p>
@@ -174,13 +174,13 @@ function createMenuCard(menuCard) {
                   <div class="cards__heading_rest">
                     <h3 class="cards__title cards__title_reg">${name}</h3>
                     <p class="cards__descr">
-                     ${1}
+                     ${description}
                     </p>
                   </div>
                 </div>
                 <div class="cards__info">
                   <button type="button" class="cards__btn">
-                    В корзину &nbsp<img src="./images/icon/shopping-cart-white.svg" alt="cart" />
+                    В корзину &nbsp<img src="./img/icon/shopping-cart-white.svg" alt="cart" />
                   </button>
                   <p class="cards__price_rest">${price} ₽</p>
                 </div>
