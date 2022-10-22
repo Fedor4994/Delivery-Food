@@ -1,5 +1,13 @@
 import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.browser.min.js';
 
+const openTrashBtn = document.querySelector('[data-modal-open]');
+const closeTrashBtn = document.querySelector('[data-modal-close]');
+const trashModal = document.querySelector('[data-modal]');
+const trashCancleBtn = document.querySelector('[cancle-btn]');
+const trashModalList = document.querySelector('.modal__body');
+const trashModalFooter = document.querySelector('.modal-footer');
+const trashModalTotalPrice = document.querySelector('.pricetag');
+
 const loginButton = document.querySelector('.header__login_bnt');
 const logoutButton = document.querySelector('.header__out_bnt');
 const userName = document.querySelector('.user-name');
@@ -15,6 +23,13 @@ const menuCards = document.querySelector('.menu-cards-list');
 const menuHeader = document.querySelector('.restaurant__heading');
 const logo = document.querySelectorAll('.logo');
 
+const searchInput = document.querySelector('.restaurants__input');
+
+openTrashBtn.addEventListener('click', toggleTrashModal);
+closeTrashBtn.addEventListener('click', toggleTrashModal);
+window.addEventListener('keydown', closeTrashModalByEsc);
+trashCancleBtn.addEventListener('click', toggleTrashModal);
+trashModal.addEventListener('click', onTrashModalClick);
 loginButton.addEventListener('click', toggleModal);
 closeModalBtn.addEventListener('click', toggleModal);
 window.addEventListener('keydown', closeModalByEsc);
@@ -22,15 +37,21 @@ loginForm.addEventListener('submit', onFormSubmit);
 modal.addEventListener('click', onModalClick);
 logoutButton.addEventListener('click', onLogoutButtonClick);
 cardsRestaurants.addEventListener('click', openGoods);
+searchInput.addEventListener('keypress', searchDish);
+menuCards.addEventListener('click', addToTrash);
 
 logo.forEach(logo => {
   logo.addEventListener('click', onLogoClick);
 });
 
+const trash = [];
 let login = localStorage.getItem('login');
 let password = '';
+let priceAtAll = null;
 
 menu.style.display = 'none';
+openTrashBtn.style.display = 'none';
+trashModalFooter.style.display = 'none';
 
 const getData = async function (url) {
   const response = await fetch(url);
@@ -51,6 +72,29 @@ getData('./db/partners.json')
     console.log(error);
   });
 
+function onTrashModalClick(event) {
+  if (event.target.classList.contains('backdrop')) {
+    event.target.classList.add('is-hidden');
+    enableScroll();
+  }
+}
+
+function closeTrashModalByEsc(event) {
+  if (event.code === 'Escape') {
+    trashModal.classList.add('is-hidden');
+    enableScroll();
+  }
+}
+
+function toggleTrashModal() {
+  trashModal.classList.toggle('is-hidden');
+  if (trashModal.classList.contains('is-hidden')) {
+    enableScroll();
+  } else {
+    disableScroll();
+  }
+}
+
 function checkAuth() {
   if (login) {
     autorized();
@@ -64,6 +108,7 @@ function autorized() {
 
   loginButton.style.display = 'none';
   logoutButton.style.display = 'flex';
+  openTrashBtn.style.display = '';
   userName.textContent = login;
 }
 
@@ -103,6 +148,7 @@ function onLogoutButtonClick() {
 
   loginButton.style.display = 'flex';
   logoutButton.style.display = 'none';
+  openTrashBtn.style.display = 'none';
   userName.textContent = '';
 
   promoContainer.style.display = '';
@@ -171,7 +217,7 @@ function creatRestaurantCard(restaurant) {
 }
 
 function createMenuCard(menuCard) {
-  const { name, description, price, image } = menuCard;
+  const { name, description, price, image, id } = menuCard;
   const card = `
         <li class="cards__item">
                 <img src="${image}" alt="${name}" class="cards__image" />
@@ -184,7 +230,7 @@ function createMenuCard(menuCard) {
                   </div>
                 </div>
                 <div class="cards__info">
-                  <button type="button" class="cards__btn">
+                  <button type="button" class="cards__btn" id="${id}">
                     В корзину &nbsp<img src="./img/icon/shopping-cart-white.svg" alt="cart" />
                   </button>
                   <p class="cards__price_rest">${price} ₽</p>
@@ -210,10 +256,37 @@ function createMenuHead(menuHead) {
   menuHeader.insertAdjacentHTML('afterbegin', head);
 }
 
-function openGoods(event) {
-  const restaurantCard = event.target.closest('.cards__item');
+function createrTrashRow(item) {
+  const { title, price, count, id } = item;
+  const totalPrice = parseInt(price) * count;
 
-  if (restaurantCard && login) {
+  trashModalTotalPrice.textContent = `${priceAtAll} ₽`;
+
+  const row = `
+       <div class="food-row">
+            <span class="food-name">${title}</span>
+            <strong class="food-price">${totalPrice} ₽</strong>
+            <div class="food-counter">
+              <button type="button" class="counter-button decrement" id="${id}">-</button>
+              <span class="counter">${count}</span>
+              <button type="button" class="counter-button increment" id="${id}">+</button>
+            </div>
+          </div>
+    `;
+
+  trashModalList.insertAdjacentHTML('afterbegin', row);
+}
+
+function openGoods(event) {
+  const restaurantList = event.target.classList.contains('cards__list');
+  const restaurantCard = event.target.closest('.cards__item');
+  console.log(restaurantCard);
+
+  if (!restaurantList) {
+    if (!login) {
+      toggleModal();
+      return;
+    }
     menuHeader.innerHTML = '';
     menuCards.innerHTML = '';
 
@@ -242,8 +315,6 @@ function openGoods(event) {
       .catch(error => {
         console.log(error);
       });
-  } else {
-    toggleModal();
   }
 }
 
@@ -251,6 +322,69 @@ function onLogoClick() {
   promoContainer.style.display = '';
   restaurants.style.display = '';
   menu.style.display = 'none';
+}
+
+function searchDish(event) {
+  if (event.charCode === 13) {
+    if (event.target.value.trim() === '') {
+      event.target.value = '';
+      return;
+    }
+    const value = event.target.value.trim();
+    getData('./db/partners.json')
+      .then(data => {
+        return data.map(restaurant => {
+          return restaurant.products;
+        });
+      })
+      .then(linkProducts => {
+        menuCards.innerHTML = '';
+
+        linkProducts.forEach(link => {
+          getData(`./db/${link}`).then(data => {
+            const resultSearch = data.filter(item => {
+              const name = item.name.toLowerCase();
+              return name.includes(value.toLowerCase());
+            });
+
+            menuHeader.innerHTML = '';
+            promoContainer.style.display = 'none';
+            restaurants.style.display = 'none';
+            menu.style.display = '';
+            event.target.value = '';
+
+            resultSearch.forEach(createMenuCard);
+          });
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+}
+
+function addToTrash(event) {
+  if (event.target.classList.contains('cards__btn')) {
+    trashModalList.innerHTML = '';
+    trashModalFooter.style.display = '';
+    priceAtAll = null;
+
+    const card = event.target.closest('.cards__item');
+    const title = card.querySelector('.cards__title').textContent;
+    const price = card.querySelector('.cards__price_rest').textContent;
+    const id = event.target.id;
+    const food = trash.find(item => item.id === id);
+    if (food) {
+      food.count += 1;
+    } else {
+      trash.push({ title, price, id, count: 1 });
+    }
+
+    trash.forEach(item => {
+      priceAtAll += parseInt(item.price) * item.count;
+    });
+    trash.forEach(createrTrashRow);
+  }
 }
 
 checkAuth();
