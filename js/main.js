@@ -31,6 +31,25 @@ let password = '';
 
 menu.style.display = 'none';
 
+const getData = async function (url) {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Ошибка по адресу ${url}, статус ошибки ${response.status}!`);
+  }
+  const data = await response.json();
+  return data;
+};
+
+getData('./db/partners.json')
+  .then(data => {
+    data.forEach(card => {
+      creatRestaurantCard(card);
+    });
+  })
+  .catch(error => {
+    console.log(error);
+  });
+
 function checkAuth() {
   if (login) {
     autorized();
@@ -112,23 +131,32 @@ function toggleModal() {
   }
 }
 
-function creatRestaurantCard() {
+function creatRestaurantCard(restaurant) {
+  const {
+    image,
+    kitchen,
+    name,
+    price,
+    stars,
+    products,
+    time_of_delivery: timeOfDelivery,
+  } = restaurant;
   const card = `
-     <li class="cards__item">
+     <li class="cards__item" data-products="${products}">
               <a class="cards__link link">
-                <img src="./images/pizza-plus/preview.jpg" alt="Пиццерия" class="cards__image" />
+                <img src="${image}" alt="${name}" class="cards__image" />
                 <div class="cards__text">
                   <div class="cards__heading">
-                    <h3 class="cards__title">Пицца плюс</h3>
-                    <div class="cards__time">50 мин</div>
+                    <h3 class="cards__title">${name}</h3>
+                    <div class="cards__time">${timeOfDelivery} мин</div>
                   </div>
                 </div>
                 <div class="cards__info">
                   <p class="cards__rating">
-                    <img class="cards__rating_star" src="./images/icon/rating.svg" alt="star" /> 4.5
+                    <img class="cards__rating_star" src="./images/icon/rating.svg" alt="star" /> ${stars}
                   </p>
-                  <p class="cards__price">От 900 ₽</p>
-                  <p class="cards__product">Пицца</p>
+                  <p class="cards__price">От ${price} ₽</p>
+                  <p class="cards__product">${kitchen}</p>
                 </div>
               </a>
             </li>
@@ -137,16 +165,16 @@ function creatRestaurantCard() {
   cardsRestaurants.insertAdjacentHTML('beforeend', card);
 }
 
-function createMenuCard() {
+function createMenuCard(menuCard) {
+  const { name, description, price, image } = menuCard;
   const card = `
         <li class="cards__item">
-                <img src="./images/tanuki/azhi.jpg" alt="Пиццерия" class="cards__image" />
+                <img src="${image}" alt="${name}" class="cards__image" />
                 <div class="cards__text">
                   <div class="cards__heading_rest">
-                    <h3 class="cards__title cards__title_reg">Ролл угорь стандарт</h3>
+                    <h3 class="cards__title cards__title_reg">${name}</h3>
                     <p class="cards__descr">
-                      Рис, угорь, соус унаги, <br />
-                      кунжут, водоросли нори.
+                     ${1}
                     </p>
                   </div>
                 </div>
@@ -154,7 +182,7 @@ function createMenuCard() {
                   <button type="button" class="cards__btn">
                     В корзину &nbsp<img src="./images/icon/shopping-cart-white.svg" alt="cart" />
                   </button>
-                  <p class="cards__price_rest">250 ₽</p>
+                  <p class="cards__price_rest">${price} ₽</p>
                 </div>
               </li>
     `;
@@ -172,12 +200,15 @@ function openGoods(event) {
     restaurants.style.display = 'none';
     menu.style.display = '';
 
-    createMenuCard();
-    createMenuCard();
-    createMenuCard();
-    createMenuCard();
-    createMenuCard();
-    createMenuCard();
+    getData(`./db/${restaurantCard.dataset.products}`)
+      .then(data => {
+        data.forEach(card => {
+          createMenuCard(card);
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   } else {
     toggleModal();
   }
@@ -188,13 +219,6 @@ function onLogoClick() {
   restaurants.style.display = '';
   menu.style.display = 'none';
 }
-
-creatRestaurantCard();
-creatRestaurantCard();
-creatRestaurantCard();
-creatRestaurantCard();
-creatRestaurantCard();
-creatRestaurantCard();
 
 checkAuth();
 
