@@ -3,11 +3,34 @@
   align-items: center;
   background-clip: content-box;
   height: 270px;
-  background-color: #fff1b8;
+  background-color: #fff45c;
+
   background-image: url(../images/promo/vegetables.png);
   background-repeat: no-repeat;
   background-position: right center;
   background-size: contain;
+  margin-bottom: 20px;
+}
+
+.pizza {
+  background-color: #fff1b8;
+  background-image: url(../images/promo/pizza.png);
+  background-size: 600px;
+  background-position: top right -100px;
+}
+
+.kebab {
+  background-color: #cbecec;
+  background-image: url(../images/promo/kebab.png);
+  background-size: 600px;
+  background-position: top right -100px;
+}
+
+.sushi {
+  background-color: #ecebd9;
+  background-image: url(../images/promo/sushi.png);
+  background-size: 600px;
+  background-position: top right -100px;
 }
 
 .promo__offer {
@@ -45,12 +68,42 @@
     padding-top: 38px;
     padding-bottom: 38px;
   }
+
+  .pizza {
+    background-size: 400px;
+    background-position: top right -100px;
+  }
+
+  .kebab {
+    background-size: 320px;
+    background-position: top right -50px;
+  }
+
+  .sushi {
+    background-size: 400px;
+    background-position: top right -150px;
+  }
 }
 
 @media screen and (min-width: 320px) and (max-width: 768px) {
   .promo {
     background-size: 630px;
-    background-position: top right -200px;
+    background-position: top right -220px;
+  }
+
+  .pizza {
+    background-size: 400px;
+    background-position: top right -220px;
+  }
+
+  .kebab {
+    background-size: 260px;
+    background-position: top right -160px;
+  }
+
+  .sushi {
+    background-size: 450px;
+    background-position: top right -210px;
   }
 
   .promo__title {
