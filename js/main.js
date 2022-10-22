@@ -12,6 +12,7 @@ const restaurants = document.querySelector('.restaurants');
 const cardsRestaurants = document.querySelector('.cards__list');
 const menu = document.querySelector('.menu');
 const menuCards = document.querySelector('.menu-cards-list');
+const menuHeader = document.querySelector('.restaurant__heading');
 const logo = document.querySelectorAll('.logo');
 
 loginButton.addEventListener('click', toggleModal);
@@ -103,6 +104,10 @@ function onLogoutButtonClick() {
   loginButton.style.display = 'flex';
   logoutButton.style.display = 'none';
   userName.textContent = '';
+
+  promoContainer.style.display = '';
+  restaurants.style.display = '';
+  menu.style.display = 'none';
 }
 
 function onModalClick(event) {
@@ -190,15 +195,43 @@ function createMenuCard(menuCard) {
   menuCards.insertAdjacentHTML('beforeend', card);
 }
 
+function createMenuHead(menuHead) {
+  const { kitchen, name, price, stars } = menuHead;
+  const head = `
+  <h2>${name}</h2>
+            <div class="restourant_cards__info">
+              <p class="cards__rating">
+                <img class="cards__rating_star" src="./img/icon/rating.svg" alt="star" /> ${stars}
+              </p>
+              <p class="cards__price">От ${price} ₽</p>
+              <p class="cards__product">${kitchen}</p>
+            </div>
+  `;
+  menuHeader.insertAdjacentHTML('afterbegin', head);
+}
+
 function openGoods(event) {
   const restaurantCard = event.target.closest('.cards__item');
 
   if (restaurantCard && login) {
+    menuHeader.innerHTML = '';
     menuCards.innerHTML = '';
 
     promoContainer.style.display = 'none';
     restaurants.style.display = 'none';
     menu.style.display = '';
+
+    getData('./db/partners.json')
+      .then(data => {
+        data.forEach(card => {
+          if (card.products === restaurantCard.dataset.products) {
+            createMenuHead(card);
+          }
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
 
     getData(`./db/${restaurantCard.dataset.products}`)
       .then(data => {
