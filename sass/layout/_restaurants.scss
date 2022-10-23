@@ -38,6 +38,10 @@
   gap: 24px;
 }
 
+.cards__link {
+  cursor: pointer;
+}
+
 .cards__item {
   max-width: 374px;
   overflow: hidden;
@@ -164,8 +168,8 @@
 
 .cards__descr {
   font-weight: 400;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 15px;
+  line-height: 18px;
   color: #8c8c8c;
 }
 
@@ -174,6 +178,10 @@
   font-size: 20px;
   line-height: 32px;
   color: #000000;
+}
+
+.menu-item {
+  height: 468px;
 }
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   .cards__image {

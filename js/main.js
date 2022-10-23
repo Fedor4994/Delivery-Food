@@ -5,7 +5,6 @@ const closeTrashBtn = document.querySelector('[data-modal-close]');
 const trashModal = document.querySelector('[data-modal]');
 const trashCancleBtn = document.querySelector('[cancle-btn]');
 const trashModalList = document.querySelector('.modal__body');
-const trashModalFooter = document.querySelector('.modal-footer');
 const trashModalTotalPrice = document.querySelector('.pricetag');
 
 const loginButton = document.querySelector('.header__login_bnt');
@@ -39,19 +38,25 @@ logoutButton.addEventListener('click', onLogoutButtonClick);
 cardsRestaurants.addEventListener('click', openGoods);
 searchInput.addEventListener('keypress', searchDish);
 menuCards.addEventListener('click', addToTrash);
+trashModalList.addEventListener('click', chageCount);
 
 logo.forEach(logo => {
   logo.addEventListener('click', onLogoClick);
 });
 
-const trash = [];
 let login = localStorage.getItem('login');
 let password = '';
 let priceAtAll = null;
 
+let trash = [];
+if (JSON.parse(localStorage.getItem('cart'))) {
+  trash = JSON.parse(localStorage.getItem('cart'));
+  countTotalPrice(trash);
+  trash.forEach(createrTrashRow);
+}
+
 menu.style.display = 'none';
 openTrashBtn.style.display = 'none';
-trashModalFooter.style.display = 'none';
 
 const getData = async function (url) {
   const response = await fetch(url);
@@ -87,6 +92,10 @@ function closeTrashModalByEsc(event) {
 }
 
 function toggleTrashModal() {
+  if (!JSON.parse(localStorage.getItem('cart'))) {
+    trashModalTotalPrice.textContent = '0 ₽';
+    trashModalList.innerHTML = '';
+  }
   trashModal.classList.toggle('is-hidden');
   if (trashModal.classList.contains('is-hidden')) {
     enableScroll();
@@ -154,6 +163,9 @@ function onLogoutButtonClick() {
   promoContainer.style.display = '';
   restaurants.style.display = '';
   menu.style.display = 'none';
+
+  localStorage.removeItem('cart');
+  trash = [];
 }
 
 function onModalClick(event) {
@@ -219,7 +231,7 @@ function creatRestaurantCard(restaurant) {
 function createMenuCard(menuCard) {
   const { name, description, price, image, id } = menuCard;
   const card = `
-        <li class="cards__item">
+        <li class="cards__item menu-item">
                 <img src="${image}" alt="${name}" class="cards__image" />
                 <div class="cards__text">
                   <div class="cards__heading_rest">
@@ -267,9 +279,9 @@ function createrTrashRow(item) {
             <span class="food-name">${title}</span>
             <strong class="food-price">${totalPrice} ₽</strong>
             <div class="food-counter">
-              <button type="button" class="counter-button decrement" id="${id}">-</button>
+              <button type="button" class="counter-button decrement" data-id="${id}">-</button>
               <span class="counter">${count}</span>
-              <button type="button" class="counter-button increment" id="${id}">+</button>
+              <button type="button" class="counter-button increment" data-id="${id}">+</button>
             </div>
           </div>
     `;
@@ -366,8 +378,7 @@ function searchDish(event) {
 function addToTrash(event) {
   if (event.target.classList.contains('cards__btn')) {
     trashModalList.innerHTML = '';
-    trashModalFooter.style.display = '';
-    priceAtAll = null;
+    // trashModalFooter.style.display = '';
 
     const card = event.target.closest('.cards__item');
     const title = card.querySelector('.cards__title').textContent;
@@ -376,15 +387,47 @@ function addToTrash(event) {
     const food = trash.find(item => item.id === id);
     if (food) {
       food.count += 1;
+      localStorage.setItem('cart', JSON.stringify(trash));
     } else {
       trash.push({ title, price, id, count: 1 });
+      localStorage.setItem('cart', JSON.stringify(trash));
     }
-
-    trash.forEach(item => {
-      priceAtAll += parseInt(item.price) * item.count;
-    });
-    trash.forEach(createrTrashRow);
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    countTotalPrice(cart);
+    cart.forEach(createrTrashRow);
   }
+}
+
+function chageCount(event) {
+  const target = event.target;
+
+  if (target.classList.contains('counter-button')) {
+    const food = trash.find(item => item.id === target.dataset.id);
+
+    if (target.classList.contains('decrement')) {
+      food.count -= 1;
+      if (food.count === 0) {
+        trash.splice(trash.indexOf(food), 1);
+      }
+    }
+    if (target.classList.contains('increment')) food.count += 1;
+
+    if (trash.length === 0) {
+      trashModalTotalPrice.textContent = '0 ₽';
+    }
+    trashModalList.innerHTML = '';
+    localStorage.setItem('cart', JSON.stringify(trash));
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    countTotalPrice(cart);
+    cart.forEach(createrTrashRow);
+  }
+}
+
+function countTotalPrice(cart) {
+  priceAtAll = null;
+  cart.forEach(item => {
+    priceAtAll += parseInt(item.price) * item.count;
+  });
 }
 
 checkAuth();
