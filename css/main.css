@@ -186,6 +186,11 @@ body {
   color: #40a9ff;
 }
 
+.counter-button:hover {
+  background-color: #40a9ff;
+  color: #fff;
+}
+
 .counter {
   font-weight: 400;
   font-size: 16px;
@@ -233,6 +238,11 @@ body {
   margin-right: 10px;
   background-color: #1890ff;
   color: #fff;
+}
+
+.modal-footer__button-blue:hover {
+  background-color: #fff;
+  color: #595959;
 }
 
 @media screen and (min-width: 320px) and (max-width: 768px) {

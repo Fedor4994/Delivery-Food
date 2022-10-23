@@ -27,7 +27,7 @@ const searchInput = document.querySelector('.restaurants__input');
 openTrashBtn.addEventListener('click', toggleTrashModal);
 closeTrashBtn.addEventListener('click', toggleTrashModal);
 window.addEventListener('keydown', closeTrashModalByEsc);
-trashCancleBtn.addEventListener('click', toggleTrashModal);
+trashCancleBtn.addEventListener('click', clearTrashMenu);
 trashModal.addEventListener('click', onTrashModalClick);
 loginButton.addEventListener('click', toggleModal);
 closeModalBtn.addEventListener('click', toggleModal);
@@ -428,6 +428,13 @@ function countTotalPrice(cart) {
   cart.forEach(item => {
     priceAtAll += parseInt(item.price) * item.count;
   });
+}
+
+function clearTrashMenu() {
+  trash.length = 0;
+  localStorage.removeItem('cart');
+  trashModalTotalPrice.textContent = '0 ₽';
+  trashModalList.innerHTML = '';
 }
 
 checkAuth();
